@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Form</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-5">
+    <div class="row d-flex flex-column justify-content-center align-items-center">
+        <div class="col-6">
+            <h3 class="text-center">Student Create Form</h3>
+
+            <form class="mt-5" th:action="@{/students}" th:object="${student}" method="POST">
+                <div class="mb-3 row">
+                    <label for="studentName" class="col-sm-3 col-form-label">Student Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="studentName" th:field="${student.studentName}"
+                               class="form-control" placeholder="Enter Name"/>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="age" class="col-sm-3 col-form-label">Age</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="age" th:field="${student.age}" class="form-control"
+                               placeholder="Enter Age"  pattern="\d+" />                      
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="course" class="col-sm-3 col-form-label">Course</label>
+                    <div class="col-sm-9">
+                        <select th:field="${student.course}" class="form-select" aria-label="Default select example">
+                            <option value="" selected disabled>Select a course</option>
+                            <option value="PHP">PHP</option>
+                            <option value="JAVA">JAVA</option>
+                            <option value="REACT">REACT</option>
+                            <option value="ANDROID">ANDROID</option>
+                        </select>                       
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="gender" class="col-sm-3 col-form-label">Gender</label>
+                    <div class="col-sm-9">
+                        <div class="form-check form-check-inline">
+                            <input type="radio" name="gender" th:field="${student.gender}" value="1"
+                                   class="form-check-input"  />
+                            <label class="form-check-label" for="inlineRadio1">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" name="gender" th:field="${student.gender}" value="0"
+                                   class="form-check-input"  />
+                            <label class="form-check-label" for="inlineRadio2">Female</label>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="dob" class="col-sm-3 col-form-label">Date of Birth</label>
+                    <div class="col-sm-9">
+                        <input type="date" name="dob" th:field="${student.dob}" class="form-control"  />                        
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="address" class="col-sm-3 col-form-label">Address</label>
+                    <div class="col-sm-9">
+                        <textarea name="address" th:field="${student.address}" rows="5" cols="30" ></textarea>                        
+                    </div>
+                </div>
+                <div class="mb-3 gap-2 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    &nbsp;
+                    <a th:href="@{/students}" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
